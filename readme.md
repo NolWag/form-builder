@@ -1,1 +1,1 @@
-Express Server with Passport Authentication
+Express with Passport Authentication

@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var flash = require('connect-flash');
 var passport = require('passport');
+var exphbs = require('express-handlebars');
 
 var setUpPassport = require('./setuppassport');
 var routes = require('./routes');
@@ -16,8 +17,10 @@ setUpPassport();
 
 app.set('port', process.env.PORT || 3000);
 
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
