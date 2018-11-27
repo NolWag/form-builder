@@ -43,7 +43,7 @@ router.post("/email", function(req, res) {
   // using SendGrid's v3 Node.js Library
   // https://github.com/sendgrid/sendgrid-nodejs
   const sgMail = require('@sendgrid/mail');
-  sgMail.setApiKey('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');
+  sgMail.setApiKey('');
   const msg = {
     to: 'nolandubyu@gmail.com',
     from: 'nolandubyu@gmail.com',
