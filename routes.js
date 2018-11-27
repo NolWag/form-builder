@@ -1,6 +1,5 @@
 var express = require("express");
 var passport = require("passport");
-
 var User = require("./models/user");
 var router = express.Router();
 
@@ -32,6 +31,29 @@ router.get("/", function(req, res, next) {
 router.get("/login", function(req, res) {
   res.render("login");
 });
+
+router.get("/email", function(req, res) {
+
+  res.render("form");
+});
+
+router.post("/email", function(req, res) {
+  var name = req.body.name;
+  console.log(name);
+  // using SendGrid's v3 Node.js Library
+  // https://github.com/sendgrid/sendgrid-nodejs
+  const sgMail = require('@sendgrid/mail');
+  sgMail.setApiKey('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');
+  const msg = {
+    to: 'nolandubyu@gmail.com',
+    from: 'nolandubyu@gmail.com',
+    subject: 'New icons',
+    text: name,
+    html: name,
+  };
+  sgMail.send(msg);
+  res.redirect('/');
+})
 
 router.post("/login", passport.authenticate("login", {
   successRedirect: "/",
